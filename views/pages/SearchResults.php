@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 
-
 <?php //move this to Source Files/connection once working
     $dsn = "mysql:host=localhost;dbname=php_mvc"; //changed
     $username = "Faye";
@@ -11,7 +10,6 @@
     catch (PDOException $e) {
         echo 'Connection failed: ' . $e->getMessage(); }    
 ?>
-
 
 <form method="post" action="SearchResults.php?go"  id="search">
 <!--Since searching by letter is merely adjusting a couple lines of code, let's 
@@ -87,7 +85,7 @@
                         }
                     }
 
-
+// OTHER VERSION
     //                    $stmt = $conn -> prepare(
     //                    "SELECT post.Title, post.Content, post.DatePublished, post.UserID, tag.TagName"
     //                        . "FROM post "
@@ -111,7 +109,8 @@
                     
                     ?>   
                 </tr>   
-    <!-- EXAMPLE -->
+                
+    <!-- EXAMPLE ----------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
                     <?php
     //                $stmt = $pdo->prepare("SELECT Book.BookTitle, Author.AuthorFirstName, Author.AuthorLastName, Book.DatePublished "
     //                    . "FROM Book "
