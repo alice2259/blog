@@ -119,35 +119,62 @@ const InputKey = 'myUploader';
 
 //die() function calls replaced with trigger_error() calls
 //replace with structured exception handling
-public static function uploadFile(string $title) {
+//public static function uploadFile(string $title) {
+//
+//	if (empty($_FILES[self::InputKey])) {
+//		//die("File Missing!");
+//                trigger_error("File Missing!");
+//	}
+//
+//	if ($_FILES[self::InputKey]['error'] > 0) {
+//		trigger_error("Handle the error! " . $_FILES[InputKey]['error']);
+//	}
+//
+//
+//	if (!in_array($_FILES[self::InputKey]['type'], self::AllowedTypes)) {
+//		trigger_error("Handle File Type Not Allowed: " . $_FILES[self::InputKey]['type']);
+//	}
+//
+//	$tempFile = $_FILES[self::InputKey]['tmp_name'];
+//        $path = "/Applications/XAMPP/xamppfiles/htdocs/blog/views/images";
+//	$destinationFile = $path . $title . '.jpeg';
+//
+//	if (!move_uploaded_file($tempFile, $destinationFile)) {
+//		trigger_error("Handle Error");
+//	}
+//		
+//	//Clean up the temp file
+//	if (file_exists($tempFile)) {
+//		unlink($tempFile); 
+//	}
+//}
 
-	if (empty($_FILES[self::InputKey])) {
-		//die("File Missing!");
-                trigger_error("File Missing!");
-	}
-
-	if ($_FILES[self::InputKey]['error'] > 0) {
-		trigger_error("Handle the error! " . $_FILES[InputKey]['error']);
-	}
-
-
-	if (!in_array($_FILES[self::InputKey]['type'], self::AllowedTypes)) {
-		trigger_error("Handle File Type Not Allowed: " . $_FILES[self::InputKey]['type']);
-	}
-
-	$tempFile = $_FILES[self::InputKey]['tmp_name'];
-        $path = "/Applications/XAMPP/xamppfiles/htdocs/blog/views/images";
-	$destinationFile = $path . $title . '.jpeg';
-
-	if (!move_uploaded_file($tempFile, $destinationFile)) {
-		trigger_error("Handle Error");
-	}
-		
-	//Clean up the temp file
-	if (file_exists($tempFile)) {
-		unlink($tempFile); 
-	}
+public static function uploadFile() {
+if (empty($_FILES[InputKey])) {
+            die("File Missing!");
+        }
+        if ($_FILES[InputKey]['error'] >0) {
+            die("Handle the error!");
+        }
+        if (!in_array($_FILES[InputKey]['type'],AllowedTypes)) {
+            die("Handle File Type Not Allowed!");
+        }
+        
+        $tmpFile= $_FILES[InputKey]['tmp_name'];
+        //Domain specific: e.g. move the file
+        $permFile='/Applications/XAMPP/xamppfiles/htdocs/blog/views/images/'.$title;
+        if (!move_uploaded_file($tmpFile, $permFile)) {
+            die ("Handle Error!");
+        }
+        //Clean up the temp file
+        if (file_exists($tmpFile)) {
+            unlink($tmp);
+        }
+    
 }
+
+
+
 public static function remove($postID) {
       $db = Db::getInstance();
       //make sure $id is an integer
