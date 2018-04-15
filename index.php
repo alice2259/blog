@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>MVC Skeleton</title>
+        <title>Blog</title>
     </head>
     <body>
         <?php
@@ -19,6 +19,5 @@
 
     require_once('views/layout.php');
         ?>
-        <h1>Testing changes on Github YYY</h1>
     </body>
 </html>

@@ -1,6 +1,6 @@
 <?php
 
-abstract class User {
+class User {
     protected $userID;
     protected $firstName;
     protected $surname;
@@ -40,5 +40,22 @@ abstract class User {
     
     public function getPermissions ($permissions) {
         return $this->permissions;
+    }
+    
+    public function login($email, $password) {
+        $db = Db::getInstance();
+        $email = ($email);
+        $password = ($password);
+        $req = $db->prepare("SELECT * FROM userTable WHERE email=$email AND password =$password");
+      //the query was prepared, now replace :postID with the actual $postID value
+        $req->execute();
+        $user = $req->fetch();
+        if($user){
+            return new User($user['userID'], $user['firstName'], $user['surname'], $user['email'], $user['password'], $user['permissions'] );
+            }
+        else  {
+            //replace with a more meaningful exception
+            throw new Exception('A real exception should go here');
+            }
     }
 }

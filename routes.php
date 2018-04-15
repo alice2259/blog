@@ -27,6 +27,7 @@
 $controllers = array('pages' => ['home', 'error'],
                     'product' => ['readAll','read','create','update','delete'],
                     'post' => ['readAll','read','create','update','delete'],
+                    'user' => ['login']
                     );
 
   // check that the requested controller and action are both allowed
