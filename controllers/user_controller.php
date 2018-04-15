@@ -8,4 +8,10 @@ class UserController {
           require_once('views/pages/login.php');
         }
     }
+    
+    public function create()    {
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            require_once ('views/posts/create.php');
+        }
+    }
 }
