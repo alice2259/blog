@@ -64,7 +64,29 @@ class PostController {
             $posts = Post::all();
             require_once('views/posts/readAll.php');
       }
+    
       
+      
+      
+      
+    // this just replaced readAll()
+    public function showAll() {
+      $posts = Post::all();
+      require_once('views/posts/showAll.php');
     }
+    // this just replaced read()
+    public function showPost() {
+      if (!isset($_GET['id']))
+        return call('pages', 'error');
+      $post = Post::find($_GET['id']);
+      require_once('views/posts/showPost.php');
+    }
+
+    public function searchPost() {
+      $searchPosts = Post::search();
+      require_once('views/posts/searchPost.php');
+    }
+  }
+    
   
 ?>

@@ -9,14 +9,20 @@
         case 'pages':
             $controller = new PagesController();
         break;
-
-        default:
-        //for all data-driven pages use a specific Controller class
-        //we need the model to query the database later in the process
-        require_once("models/{$controller}.php");
-        $controllerClassName = $controller . 'Controller';
-        $controller = new $controllerClassName();
+    
+        case 'posts':
+        // we need the model to query the database later in the controller
+        require_once('models/post.php');
+        $controller = new PostsController();
         break;
+
+//        default:
+//        //for all data-driven pages use a specific Controller class
+//        //we need the model to query the database later in the process
+//        require_once("models/{$controller}.php");
+//        $controllerClassName = $controller . 'Controller';
+//        $controller = new $controllerClassName();
+//        break;
     }
     // call the requested action
     $controller->{ $action }();
@@ -25,8 +31,7 @@
 // for validation we list the allowed controllers and their actions
 // Add an entry for each new controller and its actions
 $controllers = array('pages' => ['home', 'error'],
-                    'product' => ['readAll','read','create','update','delete'],
-                    'post' => ['readAll','read','create','update','delete'],
+                    'post' => ['create','update','delete', 'showAll', 'showPost', 'searchPost'],
                     );
 
   // check that the requested controller and action are both allowed
