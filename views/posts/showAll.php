@@ -2,7 +2,9 @@
 
 <?php foreach($posts as $post) { ?>
   <p>
-    <?php echo $post->title; ?>
+    <h4><?php echo $post->title; ?></h4>
     <a href='?controller=posts&action=showPost&id=<?php echo $post->postID; ?>'>See content</a>
+    <br>
+    Date published: <?php echo $post->datePublished; ?>
   </p>
 <?php } ?>
