@@ -65,6 +65,12 @@ class PostController {
             require_once('views/posts/readAll.php');
       }
       
+      public function searchPost() {
+      
+      $searchPosts = Post::search();
+      require_once('views/posts/searchPost.php');
+    }
+      
     }
   
 ?>

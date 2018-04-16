@@ -184,4 +184,25 @@ public static function remove($postID) {
       $req->execute(array('postID' => $postID));
   }
   
-}
+  public static function search() {
+      $list = [];
+      $db = Db::getInstance();
+      
+        if(isset($_POST['search'])){
+            $input = $_POST['search'];
+            
+            $sql = "SELECT post.postID, post.title, post.userID, post.datePublished, post.headerImage, post.imageCaption, post.content FROM post WHERE post.title LIKE '" . $input . "%';";
+        } else {
+            $sql = "SELECT post.postID, post.title, post.userID, post.datePublished, post.headerImage, post.imageCaption, post.content FROM post ORDER BY post.datePublished DESC;";
+        }
+  
+        $req = $db->query($sql); 
+  
+        foreach($req->fetchAll() as $post) {
+        $list[] = new Post($post['postID'], $post['title'], $post['userID'], $post['datePublished'], $post['headerImage'], $post['imageCaption'], $post['content']);
+        }
+  
+        return $list;
+        }
+  }
+  
